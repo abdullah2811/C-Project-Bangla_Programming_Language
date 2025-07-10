@@ -1,0 +1,27 @@
+=== Installation Guide ===
+
+Requirements:
+- Windows 10/11
+- GCC installed (MinGW recommended)
+
+Setup:
+1. Create project folder:
+   C:\BanglaScript\
+2. Place these files in folder:
+   - translator.exe
+   - run_translator.bat
+   - favicon.ico (optional)
+
+Testing:
+1. Create test.bpl with:
+   -----
+   lagaao <io.h>
+   shuru() {
+       lekho("Hello");
+   }
+   -----
+2. Double-click run_translator.bat
+
+Troubleshooting:
+- If "gcc not found", install MinGW
+- If window closes, run via Command Prompt

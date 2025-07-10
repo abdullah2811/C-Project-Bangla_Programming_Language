@@ -1,0 +1,18 @@
+=== Contribution Guide ===
+
+How to Help:
+1. Report bugs: Describe error and steps to reproduce
+2. Add keywords: Follow existing pattern in translator.c
+3. Improve docs: Keep examples up-to-date
+
+Code Style:
+- 4-space indentation
+- Comment complex logic
+- Use snake_case for variables
+
+Building from Source:
+1. Compile with: gcc translator.c -o translator
+2. Test changes with: run_translator.bat test.bpl
+
+License:
+MIT License - See LICENSE.txt

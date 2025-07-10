@@ -1,0 +1,31 @@
+=== Example Programs ===
+
+1. Hello World:
+   -----
+   lagaao <io.h>
+   shuru() {
+       lekho("Hello World!");
+       ferot_de 0;
+   }
+   -----
+
+2. Fibonacci:
+   -----
+   purno fib(purno n) {
+       jodi (n <= 1) ferot_de n;
+       ferot_de fib(n-1) + fib(n-2);
+   }
+   shuru() {
+       lekho("Fib(5)=%d", fib(5));
+   }
+   -----
+
+3. File Operations:
+   -----
+   lagaao <io.h>
+   shuru() {
+       FILE *f = file_khol("test.txt", "w");
+       file_lekho(f, "Writing in BanglaScript");
+       file_bandho(f);
+   }
+   -----

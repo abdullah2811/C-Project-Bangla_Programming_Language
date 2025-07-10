@@ -1,0 +1,18 @@
+=== BanglaScript Language Reference ===
+
+Data Types:
+purno    → int       (purno x = 5;)
+shot     → float     (shot y = 3.14;)
+borno    → char      (borno c = 'A';)
+
+Control Flow:
+jodi (x == 5)        → if (x == 5)
+jotokkhon (x > 0)    → while (x > 0)
+jonno (i = 0; i < 5) → for (i = 0; i < 5)
+
+I/O Functions:
+lekho("text")        → printf("text")
+grohon("%d", &x)     → scanf("%d", &x)
+
+Full Keyword List:
+See KEYWORDS.txt

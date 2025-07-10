@@ -1,0 +1,10 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.bpl]
+@="BanglaProgLang"
+
+[HKEY_CLASSES_ROOT\BanglaProgLang]
+@="Bangla Programming Language"
+
+[HKEY_CLASSES_ROOT\BanglaProgLang\DefaultIcon]
+@="C:\\Users\\abdul\\Desktop\\C Project-Bangla_Programming_Language\\favicon.ico"
