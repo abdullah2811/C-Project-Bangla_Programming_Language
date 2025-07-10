@@ -2,6 +2,6 @@
 
 int main()
 {
-    printf("Amaar Naam Israfil Khan!");
+    printf("amar nam israphil khan");
     return 0;
 }
