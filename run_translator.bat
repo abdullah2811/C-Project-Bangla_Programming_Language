@@ -9,10 +9,6 @@ set "TR=%BATCH_DIR%translator.exe"
 set "INPUT=%~1"
 if "%INPUT%"=="" set "INPUT=%BATCH_DIR%input.bpl"
 
-:: Define output file paths
-set "TEMP_C=%BATCH_DIR%translated_temp.c"
-set "OUTPUT_EXE=%BATCH_DIR%program.exe"
-
 :: Check if input file exists
 if not exist "%INPUT%" (
     echo Error: File not found - "%INPUT%"
@@ -29,41 +25,54 @@ if not exist "%TR%" (
     exit /b 1
 )
 
-:: Clean up old outputs
-del "%TEMP_C%" "%OUTPUT_EXE%" 2>nul
+:: Extract filename without extension
+for %%F in ("%INPUT%") do (
+    set "FNAME=%%~nF"
+)
 
-:: Step 1: Translate .bpl to C
+:: Check if FNAME.c already exists, and if so, append (1), (2), etc.
+set "SUFFIX="
+set "INDEX=1"
+:check_loop
+set "TEMP_C=%BATCH_DIR%%FNAME%%SUFFIX%.c"
+if exist "!TEMP_C!" (
+    set "SUFFIX=(%INDEX%)"
+    set /a INDEX+=1
+    goto check_loop
+)
+
+:: Set executable name
+set "OUTPUT_EXE=%BATCH_DIR%%FNAME%%SUFFIX%.exe"
+
+:: Step 1: Translate .bpl to .c
 echo.
 echo [1/3] Translating Bangla source code...
-"%TR%" "%INPUT%" "%TEMP_C%"
+"%TR%" "%INPUT%" "!TEMP_C!"
 if errorlevel 1 (
     echo ERROR: Translation failed
     pause
     exit /b 1
 )
 
-:: Step 2: Compile C code (force UTF-8 support in compiler)
+:: Step 2: Compile the .c file with UTF‑8 support
 echo.
-echo [2/3] Compiling C code with UTF‑8 support...
-gcc -finput-charset=UTF-8 -fexec-charset=UTF-8 "%TEMP_C%" -o "%OUTPUT_EXE%"
+echo [2/3] Compiling to .exe...
+gcc -finput-charset=UTF-8 -fexec-charset=UTF-8 "!TEMP_C!" -o "!OUTPUT_EXE!"
 if errorlevel 1 (
     echo ERROR: Compilation failed
     echo ---- Translated C code ----
-    type "%TEMP_C%"
+    type "!TEMP_C!"
     pause
     exit /b 1
 )
 
-:: Step 3: Run the compiled executable
+:: Step 3: Run the .exe file
 echo.
 echo [3/3] Running the program...
 echo -------------------------------
-"%OUTPUT_EXE%"
+"!OUTPUT_EXE!"
 echo.
 echo -------------------------------
-
-:: Optional: clean up temporary files
-:: del "%TEMP_C%" "%OUTPUT_EXE%" 2>nul
 
 echo.
 echo Thanks for using the Bangla Programming Language developed by Abdullah.
